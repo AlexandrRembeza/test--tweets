@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/AlexandrRembeza/test--tweets/static/css/main.e6c13ad2.css",
+    "main.js": "/AlexandrRembeza/test--tweets/static/js/main.a80a6bea.js",
+    "index.html": "/AlexandrRembeza/test--tweets/index.html",
+    "main.e6c13ad2.css.map": "/AlexandrRembeza/test--tweets/static/css/main.e6c13ad2.css.map",
+    "main.a80a6bea.js.map": "/AlexandrRembeza/test--tweets/static/js/main.a80a6bea.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.a80a6bea.js"
+  ]
+}
