@@ -42,7 +42,7 @@ const UserImage = styled.img`
 `;
 
 const UserInfo = styled.p`
-  font-family: 'Montserrat-Medium';
+  font-family: 'Montserrat-Medium', sans-serif;
   font-size: 20px;
   line-height: 1.2;
   text-transform: uppercase;
@@ -60,7 +60,7 @@ const FollowBtn = styled.button`
   align-items: center;
   width: 196px;
   height: 50px;
-  font-family: 'Montserrat-SemiBold';
+  font-family: 'Montserrat-SemiBold', sans-serif;
   font-size: 18px;
   line-height: 1.22;
   padding: 0;

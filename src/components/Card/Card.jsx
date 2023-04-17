@@ -17,7 +17,7 @@ export const Card = ({ user, followings, onClick }) => {
       firstRender.current = false;
       return;
     }
-    if (subscription) return setNewFollowers(prevS => (prevS += 1));
+    if (subscription) return setNewFollowers(s => (s += 1));
     return setNewFollowers(s => (s -= 1));
   }, [subscription]);
 
@@ -40,6 +40,7 @@ export const Card = ({ user, followings, onClick }) => {
           setSubscription(s => !s);
           setIsLoading(false);
         }}
+        disabled={isLoading}
       >
         {isLoading ? (
           <SyncLoader loading={isLoading} size={8} color="#000000" />

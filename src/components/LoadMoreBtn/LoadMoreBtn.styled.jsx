@@ -10,7 +10,7 @@ const Button = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 196px;
+  width: 150px;
   height: 50px;
   font-family: 'Montserrat-SemiBold';
   font-size: 18px;
