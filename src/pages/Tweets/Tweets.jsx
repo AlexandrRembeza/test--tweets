@@ -2,10 +2,13 @@ import { useLocation } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import CardList from '../../components/CardList';
 import LoadMoreBtn from '../../components/LoadMoreBtn';
+import SortUsers from '../../components/SortUsers';
+import utils from '../../utils';
 import API from '../../service/api/users';
 import useLocalStorage from '../../hooks/useLocaleStorage';
 import styles from './Tweets.styled';
 const { BackLink } = styles;
+const { sortUsers, sortValues } = utils;
 
 export const TweetsPage = () => {
   const [users, setUsers] = useState([]);
@@ -13,8 +16,10 @@ export const TweetsPage = () => {
   const [page, setPage] = useState(1);
   const [isLastPage, setIsLastPage] = useState(false);
   const [followings, setFollowings] = useLocalStorage();
+  const [selectedOption, setSelectedOption] = useState(sortValues.all);
   const location = useLocation();
   const backLinkHref = location.state?.from || '/';
+  const filteredUsers = sortUsers(users, followings, selectedOption.value);
 
   useEffect(() => {
     (async () => {
@@ -42,8 +47,9 @@ export const TweetsPage = () => {
 
   return (
     <>
+      <SortUsers selectedOption={selectedOption} setSelectedOption={setSelectedOption} />
       <BackLink to={backLinkHref}>Back to home</BackLink>
-      <CardList users={users} followings={followings} onClick={onFollowBtnClick} />
+      <CardList users={filteredUsers} followings={followings} onClick={onFollowBtnClick} />
       {users.length > 0 && (
         <LoadMoreBtn isLastPage={isLastPage} isLoading={isLoading} setPage={setPage} />
       )}
