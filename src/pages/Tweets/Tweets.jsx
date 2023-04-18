@@ -19,7 +19,8 @@ export const TweetsPage = () => {
   const [selectedOption, setSelectedOption] = useState(sortValues.all);
   const location = useLocation();
   const backLinkHref = location.state?.from || '/';
-  const filteredUsers = sortUsers(users, followings, selectedOption.value);
+
+  let filteredUsers = sortUsers(users, followings, selectedOption.value);
 
   useEffect(() => {
     (async () => {
@@ -36,6 +37,15 @@ export const TweetsPage = () => {
   }, [page]);
 
   const onFollowBtnClick = async (id, followers, subscription) => {
+    setUsers(s =>
+      s.map(user => {
+        if (user.id !== id) return user;
+        return {
+          ...user,
+          followers: !subscription ? (user.followers += 1) : (user.followers -= 1),
+        };
+      })
+    );
     if (!subscription) {
       setFollowings(s => [...s, id]);
       await API.updateUser(id, (followers += 1));
@@ -49,8 +59,13 @@ export const TweetsPage = () => {
     <>
       <SortUsers selectedOption={selectedOption} setSelectedOption={setSelectedOption} />
       <BackLink to={backLinkHref}>Back to home</BackLink>
-      <CardList users={filteredUsers} followings={followings} onClick={onFollowBtnClick} />
-      {users.length > 0 && (
+      <CardList
+        users={filteredUsers}
+        setUsers={setUsers}
+        followings={followings}
+        onClick={onFollowBtnClick}
+      />
+      {users.length > 0 && selectedOption.value === sortValues.all.value && (
         <LoadMoreBtn isLastPage={isLastPage} isLoading={isLoading} setPage={setPage} />
       )}
     </>

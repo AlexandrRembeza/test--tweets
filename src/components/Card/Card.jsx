@@ -1,5 +1,5 @@
 import SyncLoader from 'react-spinners/SyncLoader';
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import styles from './Card.styled';
 const { CardStraightLine, UserAvatar, Ellipse, UserImage, UserInfo, FollowBtn } = styles;
 
@@ -8,18 +8,7 @@ export const Card = ({ user, followings, onClick }) => {
 
   const [isLoading, setIsLoading] = useState(false);
   const [subscription, setSubscription] = useState(followings.includes(id));
-  const [newFollowers, setNewFollowers] = useState(followers);
-  const firstRender = useRef(true);
-  const formatFollowers = newFollowers.toLocaleString().replace(/\s/g, ',');
-
-  useEffect(() => {
-    if (firstRender.current) {
-      firstRender.current = false;
-      return;
-    }
-    if (subscription) return setNewFollowers(s => (s += 1));
-    return setNewFollowers(s => (s -= 1));
-  }, [subscription]);
+  const formatFollowers = followers.toLocaleString().replace(/\s/g, ',');
 
   return (
     <>

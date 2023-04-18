@@ -11,8 +11,8 @@ const CardsListWrap = styled.div`
 const CardsList = styled.ul`
   width: 1200px;
   display: flex;
-  justify-content: space-between;
   flex-wrap: wrap;
+  column-gap: 30px;
   row-gap: 20px;
 `;
 
