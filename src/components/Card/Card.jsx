@@ -1,7 +1,7 @@
 import SyncLoader from 'react-spinners/SyncLoader';
 import React, { useState } from 'react';
 import styles from './Card.styled';
-const { CardStraightLine, UserAvatar, Ellipse, UserImage, UserInfo, FollowBtn } = styles;
+const { UserAvatar, Ellipse, UserImage, UserInfo, FollowBtn } = styles;
 
 export const Card = ({ user, followings, onClick }) => {
   const { user: name, avatar, tweets, followers, id } = user;
@@ -12,7 +12,6 @@ export const Card = ({ user, followings, onClick }) => {
 
   return (
     <>
-      <CardStraightLine />
       <UserAvatar>
         <Ellipse>
           <UserImage src={avatar} alt={`${name} image`} />

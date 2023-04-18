@@ -38,6 +38,18 @@ const CardItem = styled.li`
     pointer-events: none;
   }
 
+  &::after {
+    content: '';
+    width: 380px;
+    height: 8px;
+    position: absolute;
+    top: 214px;
+    left: 0px;
+    background: #ebd8ff;
+    box-shadow: 0px 3.43693px 3.43693px rgba(0, 0, 0, 0.06), inset 0px -1.71846px 3.43693px #ae7be3,
+      inset 0px 3.43693px 2.5777px #fbf8ff;
+  }
+
   &:hover {
     background-image: linear-gradient(
       to right bottom,
