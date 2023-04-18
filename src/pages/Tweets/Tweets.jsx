@@ -36,7 +36,7 @@ export const TweetsPage = () => {
     })();
   }, [page]);
 
-  const onFollowBtnClick = async (id, followers, subscription) => {
+  const updateUserFollowings = async (id, followers, subscription) => {
     setUsers(s =>
       s.map(user => {
         if (user.id !== id) return user;
@@ -63,7 +63,7 @@ export const TweetsPage = () => {
         users={filteredUsers}
         setUsers={setUsers}
         followings={followings}
-        onClick={onFollowBtnClick}
+        updateUserFollowings={updateUserFollowings}
       />
       {users.length > 0 && selectedOption.value === sortValues.all.value && (
         <LoadMoreBtn isLastPage={isLastPage} isLoading={isLoading} setPage={setPage} />

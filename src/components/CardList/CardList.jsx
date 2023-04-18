@@ -4,7 +4,7 @@ import styles from './CardList.styled';
 import logo from '../../images/logoGoIt.png';
 const { CardsList, CardsListWrap, CardItem, LogoWrap, Logo } = styles;
 
-export const CardList = ({ users, followings, onClick }) => {
+export const CardList = ({ users, followings, updateUserFollowings }) => {
   return (
     <CardsListWrap>
       <CardsList>
@@ -13,7 +13,7 @@ export const CardList = ({ users, followings, onClick }) => {
             <LogoWrap>
               <Logo src={logo} alt="LogGoIt" />
             </LogoWrap>
-            <Card user={user} followings={followings} onClick={onClick} />
+            <Card user={user} followings={followings} updateUserFollowings={updateUserFollowings} />
           </CardItem>
         ))}
       </CardsList>

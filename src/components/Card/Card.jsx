@@ -3,12 +3,19 @@ import React, { useState } from 'react';
 import styles from './Card.styled';
 const { UserAvatar, Ellipse, UserImage, UserInfo, FollowBtn } = styles;
 
-export const Card = ({ user, followings, onClick }) => {
+export const Card = ({ user, followings, updateUserFollowings }) => {
   const { user: name, avatar, tweets, followers, id } = user;
 
   const [isLoading, setIsLoading] = useState(false);
   const [subscription, setSubscription] = useState(followings.includes(id));
   const formatFollowers = followers.toLocaleString().replace(/\s/g, ',');
+
+  const onFollowBtnClick = async () => {
+    setIsLoading(true);
+    await updateUserFollowings(id, followers, subscription);
+    setSubscription(s => !s);
+    setIsLoading(false);
+  };
 
   return (
     <>
@@ -22,12 +29,7 @@ export const Card = ({ user, followings, onClick }) => {
       <FollowBtn
         subscription={subscription}
         type="button"
-        onClick={async () => {
-          setIsLoading(true);
-          await onClick(id, followers, subscription);
-          setSubscription(s => !s);
-          setIsLoading(false);
-        }}
+        onClick={onFollowBtnClick}
         disabled={isLoading}
       >
         {isLoading ? (
